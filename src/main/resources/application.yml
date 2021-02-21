@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    common:
+      driverClassName: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/xxx_project?characterEncoding=utf8&useSSL=false
+      user: root
+      password: Yannian002.
+      initialSize: 1
+      minIdle: 1
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 30000
+      validationQuery: select 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mapping/*Mapper.xml
+  type-aliases-package: com.xxx_project.pojo
+server:
+  port: 8088
