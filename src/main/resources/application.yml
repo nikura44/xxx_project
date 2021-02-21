@@ -2,7 +2,7 @@ spring:
   datasource:
     common:
       driverClassName: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/xxx_project?characterEncoding=utf8&useSSL=false
+      url: jdbc:mysql://localhost:3306/xxx_project?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
       user: root
       password: Yannian002.
       initialSize: 1
@@ -23,3 +23,5 @@ mybatis:
   type-aliases-package: com.xxx_project.pojo
 server:
   port: 8088
+
+# http://localhost:8088/login/check?username=xxx&password=123456
