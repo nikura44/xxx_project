@@ -2,7 +2,7 @@ spring:
   datasource:
     common:
       driverClassName: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/xxx_project?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+      url: jdbc:mysql://119.45.235.234:3306/xxx?characterEncoding=utf8&useSSL=false&serverTimezone=UTC
       user: root
       password: Yannian002.
       initialSize: 1

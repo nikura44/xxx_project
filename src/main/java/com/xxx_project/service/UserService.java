@@ -12,7 +12,7 @@ public class UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public List check(String username, String password){
-        return userMapper.check(username,password);
+    public List check(String username, String password,String isAdmin){
+        return userMapper.check(username,password,isAdmin);
     }
 }
