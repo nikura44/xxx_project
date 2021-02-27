@@ -27,7 +27,7 @@ public class UserController {
     private DataSource dataSource;
 
     @RequestMapping("/check")
-    public boolean testTwo(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @RequestParam(value = "isAdmin") String isAdmin){
+    public boolean testTwo(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password,@RequestParam(value = "isAdmin") String isAdmin){
         List list =  userService.check(username,password,"1");
         if (list.isEmpty()){
             return false;
@@ -51,5 +51,12 @@ public class UserController {
             mapE.put("status", 200);
             return new ResponseEntity<Map<String, Object>>(mapE, HttpStatus.OK);
         }
+    }
+
+    @RequestMapping("/InsertNewUser")
+    public boolean InsertNewUser(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password){
+        System.out.println("insert new user: " + username);
+        userService.InsertNewUser(username,password);
+        return true;
     }
 }

@@ -15,4 +15,8 @@ public class UserService {
     public List check(String username, String password,String isAdmin){
         return userMapper.check(username,password,isAdmin);
     }
+
+    public void InsertNewUser(String username, String password){
+        userMapper.InsertNewUser(username,password);
+    }
 }
