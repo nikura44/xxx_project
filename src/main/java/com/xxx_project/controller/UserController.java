@@ -54,9 +54,9 @@ public class UserController {
     }
 
     @RequestMapping("/InsertNewUser")
-    public boolean InsertNewUser(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password){
+    public boolean InsertNewUser(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @RequestParam(value = "phone") String phone){
         System.out.println("insert new user: " + username);
-        userService.InsertNewUser(username,password);
+        userService.InsertNewUser(username,password,phone);
         return true;
     }
 }

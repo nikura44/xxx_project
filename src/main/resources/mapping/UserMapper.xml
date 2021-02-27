@@ -13,6 +13,6 @@
     and isAdmin=#{isAdmin}
     </select>
     <insert id="InsertNewUser"  parameterType="java.lang.String">
-    INSERT into user (username,password) VALUE (#{username},#{password})
+    INSERT into user (username,password,phone) VALUE (#{username},#{password},#{phone})
     </insert>
 </mapper>

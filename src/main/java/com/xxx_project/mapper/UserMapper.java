@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface UserMapper {
     List check(@Param("username") String username,@Param("password") String password,@Param("isAdmin") String isAdmin);
-    void InsertNewUser(@Param("username") String username,@Param("password") String password);
+    void InsertNewUser(@Param("username") String username,@Param("password") String password,@Param("phone") String phone);
 }
