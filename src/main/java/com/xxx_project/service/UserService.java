@@ -16,7 +16,19 @@ public class UserService {
         return userMapper.check(username,password,isAdmin);
     }
 
-    public void InsertNewUser(String username, String password,String phone){
-        userMapper.InsertNewUser(username,password,phone);
+    public void register(String account, String password,String phone,String command){
+        userMapper.register(account,password,phone,command);
+    }
+
+    public List login(String account, String password){
+        return userMapper.login(account,password);
+    }
+
+    public int updatePassword(String account,String password,String new_password){
+        return userMapper.updatePassword(account,password,new_password);
+    }
+
+    public int updatePasswordByPhone(String account,String phone,String new_password){
+        return userMapper.updatePasswordByPhone(account,phone,new_password);
     }
 }

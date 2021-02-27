@@ -1,16 +1,34 @@
 package com.xxx_project.pojo;
 
 public class User {
-    private String username;
+    private String account;
     private String password;
     private String isAdmin;
+    private String command;
+    private String deposit;
 
-    public String getUsername() {
-        return username;
+    public String getDeposit() {
+        return deposit;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setDeposit(String deposit) {
+        this.deposit = deposit;
+    }
+
+    public String getCommand() {
+        return command;
+    }
+
+    public void setCommand(String command) {
+        this.command = command;
+    }
+
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     public String getPassword() {

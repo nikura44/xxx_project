@@ -27,9 +27,9 @@ public class UserController {
     private DataSource dataSource;
 
     @RequestMapping("/check")
-    public boolean testTwo(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password,@RequestParam(value = "isAdmin") String isAdmin){
-        List list =  userService.check(username,password,"1");
-        if (list.isEmpty()){
+    public boolean testTwo(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @RequestParam(value = "isAdmin") String isAdmin) {
+        List list = userService.check(username, password, "1");
+        if (list.isEmpty()) {
             return false;
         }
         return true;
@@ -41,22 +41,51 @@ public class UserController {
         System.out.println(JSONObject.toJSONString(maps));
         String username = maps.get("username");
         String password = maps.get("password");
-        List list =  userService.check(username,password,"1");
-        if (list.isEmpty()){
+        List list = userService.check(username, password, "1");
+        if (list.isEmpty()) {
             Map<String, Object> mapP = new HashMap<>();
             mapP.put("status", 403);
             return new ResponseEntity<Map<String, Object>>(mapP, HttpStatus.OK);
-        }else  {
+        } else {
             Map<String, Object> mapE = new HashMap<>();
             mapE.put("status", 200);
             return new ResponseEntity<Map<String, Object>>(mapE, HttpStatus.OK);
         }
     }
 
-    @RequestMapping("/InsertNewUser")
-    public boolean InsertNewUser(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @RequestParam(value = "phone") String phone){
-        System.out.println("insert new user: " + username);
-        userService.InsertNewUser(username,password,phone);
+    @RequestMapping("/register")
+    public boolean register(@RequestParam(value = "account") String account, @RequestParam(value = "password") String password, @RequestParam(value = "phone") String phone, @RequestParam(value = "command") String command) {
+        System.out.println("insert new user: " + account);
+        userService.register(account, password, phone, command);
         return true;
+    }
+
+    @RequestMapping("/login")
+    public boolean login(@RequestParam(value = "account") String account, @RequestParam(value = "password") String password) {
+        List list = userService.login(account, password);
+        if (list.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    @RequestMapping("/updatePassword")
+    public boolean updatePassword(@RequestParam(value = "account") String account, @RequestParam(value = "password") String password, @RequestParam(value = "new_password") String new_password) {
+        int result = userService.updatePassword(account, password, new_password);
+        if (result == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @RequestMapping("/updatePasswordByPhone")
+    public boolean updatePasswordByPhone(@RequestParam(value = "account") String account, @RequestParam(value = "phone") String phone, @RequestParam(value = "new_password") String new_password) {
+        int result = userService.updatePasswordByPhone(account, phone, new_password);
+        if (result == 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

@@ -7,12 +7,27 @@
 <!--        <result column="isAdmin" jdbcType="VARCHAR" property="isAdmin" />-->
 <!--    </resultMap>-->
     <select id="check"  parameterType="java.lang.String" resultType="java.util.HashMap">
-    select * from user
-    where username = #{username}
+    select * from user_info
+    where account = #{account}
     and password=#{password}
     and isAdmin=#{isAdmin}
     </select>
-    <insert id="InsertNewUser"  parameterType="java.lang.String">
-    INSERT into user (username,password,phone) VALUE (#{username},#{password},#{phone})
+    <insert id="register"  parameterType="java.lang.String">
+    INSERT into user_info (account,password,phone,command) VALUE (#{account},#{password},#{phone},#{command})
     </insert>
+    <select id="login"  parameterType="java.lang.String" resultType="java.util.HashMap">
+    select * from user_info
+    where account = #{account}
+    and password=#{password}
+    </select>
+    <update id="updatePassword" parameterType="java.lang.String">
+        update user_info set password=#{new_password}
+        where account = #{account}
+        and password=#{password}
+    </update>
+    <update id="updatePasswordByPhone" parameterType="java.lang.String">
+        update user_info set password=#{new_password}
+        where account = #{account}
+        and phone=#{phone}
+    </update>
 </mapper>
