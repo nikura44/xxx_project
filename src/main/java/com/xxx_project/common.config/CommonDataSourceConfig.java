@@ -50,7 +50,7 @@ public class CommonDataSourceConfig {
         // pool configuration
         datasource.setInitialSize(initialSize);
         datasource.setMinIdle(minIdle);
-        datasource.setMaxActive(maxActive);
+        datasource.setMaxActive(25);
         datasource.setMaxWait(maxWait);
         datasource.setTimeBetweenEvictionRunsMillis(timeBetweenEvictionRunsMillis);
         datasource.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
