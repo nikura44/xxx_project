@@ -1,6 +1,8 @@
 package com.xxx_project.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xxx_project.pojo.User;
 import com.xxx_project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,4 +61,27 @@ public class UserController {
         userService.InsertNewUser(username,password,phone);
         return true;
     }
+
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @ResponseBody
+    public String login(@RequestHeader Map<String,Object> he,@RequestBody Map<String,Object> para) throws JsonProcessingException {
+        System.out.println(he);
+        String username=(String)para.get("username");
+        String password=(String)para.get("password");
+        HashMap<String,Object> hs=new HashMap<>();
+        hs.put("token","token"+username+password);
+        ObjectMapper objectMapper=new ObjectMapper();
+        return objectMapper.writeValueAsString(hs);
+    }
+
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    @ResponseBody
+    public String test(@RequestHeader Map<String,Object> he) throws JsonProcessingException {
+        System.out.println(he);
+        HashMap<String,Object> hs=new HashMap<>();
+        ObjectMapper objectMapper=new ObjectMapper();
+        return objectMapper.writeValueAsString(hs);
+    }
+
+
 }
