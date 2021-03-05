@@ -10,7 +10,6 @@
     select * from user
     where username = #{username}
     and password=#{password}
-    and isAdmin=#{isAdmin}
     </select>
     <insert id="InsertNewUser"  parameterType="java.lang.String">
     INSERT into user (username,password,phone) VALUE (#{username},#{password},#{phone})

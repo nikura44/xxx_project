@@ -3,6 +3,7 @@ package com.xxx_project.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.xxx_project.pojo.User;
 import com.xxx_project.service.UserService;
+import com.xxx_project.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -15,12 +16,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 @Controller
 @ResponseBody
 @CrossOrigin
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private JwtUtil jwtUtilService;
 
     @Autowired
     @Qualifier("commonDataSource")
@@ -49,8 +54,26 @@ public class UserController {
         }else  {
             Map<String, Object> mapE = new HashMap<>();
             mapE.put("status", 200);
+            String token = jwtUtilService.token(username,password);
+            mapE.put("token",token);
+            mapE.put("tk","nico");
             return new ResponseEntity<Map<String, Object>>(mapE, HttpStatus.OK);
         }
+    }
+
+    @RequestMapping("/checkToken")
+    public ResponseEntity<Map<String, Object>> checkToken(@RequestBody Map<String, String> maps){
+        String Token = maps.get("token");
+        boolean isOK = jwtUtilService.verify(Token);
+        Map<String, Object> res = new HashMap<>();
+        if (isOK){
+            res.put("status", 200);
+            res.put("check",true);
+        }else {
+            res.put("status", 403);
+            res.put("check",false);
+        }
+        return new ResponseEntity<Map<String, Object>>(res, HttpStatus.OK);
     }
 
     @RequestMapping("/InsertNewUser")
