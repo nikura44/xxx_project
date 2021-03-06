@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xxx_project.mapper.UserMapper">
-<!--    <resultMap id="UserResultMap" type="com.xxx_project.pojo.User">-->
-<!--        <id column="id" jdbcType="INT" property="id" />-->
-<!--        <result column="username" jdbcType="VARCHAR" property="username" />-->
-<!--        <result column="password" jdbcType="VARCHAR" property="password" />-->
-<!--        <result column="isAdmin" jdbcType="VARCHAR" property="isAdmin" />-->
-<!--    </resultMap>-->
-    <select id="check"  parameterType="java.lang.String" resultType="java.util.HashMap">
+    <resultMap id="UserResultMap" type="com.xxx_project.pojo.User">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="openid" jdbcType="VARCHAR" property="openid" />
+        <result column="picUrl" jdbcType="VARCHAR" property="picUrl" />
+        <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    </resultMap>
+    <select id="select"  parameterType="java.lang.String" resultMap="UserResultMap">
     select * from user
-    where username = #{username}
-    and password=#{password}
+    where openid = #{openid}
     </select>
     <insert id="InsertNewUser"  parameterType="java.lang.String">
-    INSERT into user (username,password,phone) VALUE (#{username},#{password},#{phone})
+    INSERT into user (openid,picUrl,nickname) VALUE (#{openid},#{picUrl},#{nickname})
     </insert>
 </mapper>

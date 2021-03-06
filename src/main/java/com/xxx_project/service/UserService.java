@@ -2,6 +2,7 @@ package com.xxx_project.service;
 
 import com.xxx_project.mapper.UserMapper;
 import com.xxx_project.pojo.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,11 @@ public class UserService {
         return userMapper.check(username,password,isAdmin);
     }
 
-    public void InsertNewUser(String username, String password,String phone){
-        userMapper.InsertNewUser(username,password,phone);
+    public void InsertNewUser(String openid, String picUrl,String nickname){
+        userMapper.InsertNewUser(openid,picUrl,nickname);
+    }
+
+    public Object select(@Param("openid") String openid){
+        return userMapper.select(openid);
     }
 }

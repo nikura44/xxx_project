@@ -1,31 +1,57 @@
 package com.xxx_project.pojo;
 
-public class User {
-    private String username;
-    private String password;
-    private String isAdmin;
+import java.io.Serializable;
 
-    public String getUsername() {
-        return username;
+public class User implements Serializable {
+    private Integer id;
+    private String openid;
+    private String picUrl = "";
+    private String nickname = "";
+//
+//    User(String openid,String picUrl,String nickname){
+//        this.openid = openid;
+//        this.picUrl = picUrl;
+//        this.nickname = nickname;
+//    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "openid='" + openid + '\'' +
+                ", picUrl='" + picUrl + '\'' +
+                ", nickname='" + nickname + '\'' +
+                '}';
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public Integer getId() {
+        return id;
     }
 
-    public String getPassword() {
-        return password;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getOpenid() {
+        return openid;
     }
 
-    public String getIsAdmin() {
-        return isAdmin;
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 
-    public void setIsAdmin(String isAdmin) {
-        this.isAdmin = isAdmin;
+    public String getPicUrl() {
+        return picUrl;
+    }
+
+    public void setPicUrl(String picUrl) {
+        this.picUrl = picUrl;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 }
